@@ -3,6 +3,8 @@
 // }
 
 def call() {
-    // Skip unit tests to avoid compilation errors
-    sh 'mvn clean test -DskipTests'
+    sh '''
+       export MAVEN_OPTS="--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED"
+       mvn clean package -DskipTests
+    '''
 }
